@@ -1,8 +1,9 @@
 from fastapi import  FastAPI,Depends,HTTPException
 from models import Doctor, Appointment,Patient,UserLogin,UpdateProfile
-from database import session, engine
+# from database import session, engine
 import database_models
 from sqlalchemy.orm import Session
+from database import SessionLocal, engine
 from fastapi.middleware.cors import CORSMiddleware
 from auth import get_current_user
 
@@ -27,9 +28,12 @@ app.add_middleware(
 )
 
 def get_db():
-    db = session()
+
+    db = SessionLocal()
+
     try:
         yield db
+
     finally:
         db.close()
 
