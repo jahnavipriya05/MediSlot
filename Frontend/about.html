@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — MediSlot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR (same on every page)
+       ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <div class="brand-icon">🏥</div>
+        MediSlot
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="help.html">Help</a></li>
+        <li><a href="index.html#doctors">Doctors</a></li>
+        <li><a href="index.html#app" class="navbar__cta">Book Now</a></li>
+      </ul>
+      <button class="navbar__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       PAGE HEADER
+       ═══════════════════════════════════════ -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header__eyebrow">About Us</div>
+      <h1 class="page-header__title">What is MediSlot?</h1>
+      <p class="page-header__sub">A modern appointment platform built to simplify healthcare for patients and doctors alike.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       ABOUT INTRO
+       ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+
+        <!-- Left: Text -->
+        <div>
+          <span class="section-header__eyebrow">Our Mission</span>
+          <h2 style="font-size:clamp(1.6rem,3vw,2.2rem); margin:0.5rem 0 1rem;">
+            Bridging Patients &amp; Doctors Seamlessly
+          </h2>
+          <p style="color:var(--text-body); margin-bottom:1rem; line-height:1.75;">
+            MediSlot was built to solve a simple but painful problem — booking a doctor's appointment
+            shouldn't feel like a bureaucratic maze. We created a lightweight, fast, and intuitive
+            platform that connects patients with healthcare professionals in a matter of seconds.
+          </p>
+          <p style="color:var(--text-body); line-height:1.75;">
+            Whether you're a patient looking for the right specialist or a clinic managing
+            its doctor roster, MediSlot keeps everything organized and collision-free.
+          </p>
+          <div class="mt-3">
+            <a href="index.html#app" class="btn btn--primary">Get Started →</a>
+          </div>
+        </div>
+
+        <!-- Right: Stat cards -->
+        <div class="grid grid--2" style="gap:1rem;">
+
+          <div class="card" style="border-left:4px solid var(--primary); padding:1.5rem;">
+            <div style="font-size:2rem; margin-bottom:0.4rem;">🩺</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:0.25rem;">Specialist Matching</div>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Filter doctors by specialization to find exactly who you need.</p>
+          </div>
+
+          <div class="card" style="border-left:4px solid var(--accent); padding:1.5rem;">
+            <div style="font-size:2rem; margin-bottom:0.4rem;">⚡</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:0.25rem;">Instant Booking</div>
+            <p style="font-size:0.85rem; color:var(--text-muted);">No phone calls. No waiting. Book confirmed slots instantly.</p>
+          </div>
+
+          <div class="card" style="border-left:4px solid #4a7ede; padding:1.5rem;">
+            <div style="font-size:2rem; margin-bottom:0.4rem;">🔒</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:0.25rem;">No Double Booking</div>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Smart slot locking prevents conflicts at the same date &amp; time.</p>
+          </div>
+
+          <div class="card" style="border-left:4px solid var(--success); padding:1.5rem;">
+            <div style="font-size:2rem; margin-bottom:0.4rem;">📋</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:0.25rem;">Full Control</div>
+            <p style="font-size:0.85rem; color:var(--text-muted);">View and cancel appointments any time from your dashboard.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       PURPOSE OF THE APPLICATION
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Our Purpose</span>
+        <h2 class="section-header__title">Why We Built MediSlot</h2>
+        <p class="section-header__sub">Healthcare access is a fundamental right. We believe technology can make it easier for everyone.</p>
+      </div>
+
+      <div class="grid grid--3">
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🕐</div>
+          <h3 class="feature-card__title">Save Time</h3>
+          <p class="feature-card__text">
+            Patients spend an average of 30+ minutes trying to book appointments over phone.
+            MediSlot cuts that to under 2 minutes — from any device, any time.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🌐</div>
+          <h3 class="feature-card__title">Always Available</h3>
+          <p class="feature-card__text">
+            Our platform works 24/7. Book an appointment at midnight for tomorrow morning,
+            without worrying about clinic working hours.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📊</div>
+          <h3 class="feature-card__title">Organized Records</h3>
+          <p class="feature-card__text">
+            Doctors and clinics can maintain clean records of all appointments, patient details,
+            and schedules without spreadsheets or paper logs.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       BENEFITS FOR PATIENTS
+       ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">For Patients</span>
+        <h2 class="section-header__title">Benefits For You</h2>
+        <p class="section-header__sub">Everything designed with the patient experience in mind.</p>
+      </div>
+
+      <!-- Timeline-style benefit list -->
+      <div style="max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:1rem;">
+
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>One-time Registration</h4>
+            <p>Register once with your name, age, gender, phone, and email. Your Patient ID is stored and reused for every future booking.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Browse Qualified Doctors</h4>
+            <p>View all registered doctors with their specializations. Tap "Book Appointment" on any doctor card to jump straight into scheduling.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Choose Your Slot</h4>
+            <p>Pick a date and time. If a slot is already taken, MediSlot will notify you immediately — no wasted trips to the clinic.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>View &amp; Cancel Anytime</h4>
+            <p>Look up all your appointments by Patient ID. Cancel any appointment with a single click if your plans change.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       TECH / ABOUT THE PROJECT
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt">
+    <div class="container" style="max-width:700px;">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Under the Hood</span>
+        <h2 class="section-header__title">How MediSlot is Built</h2>
+      </div>
+
+      <div class="card">
+        <div class="card__body">
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+
+            <div style="display:flex; align-items:center; gap:1rem; padding:0.75rem; background:var(--bg); border-radius:var(--radius-sm);">
+              <span style="font-size:1.5rem;">⚙️</span>
+              <div>
+                <strong style="color:var(--text-primary);">Backend — FastAPI + MySQL + SQLAlchemy</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:0.2rem;">High-performance Python REST API with full CRUD endpoints.</p>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:1rem; padding:0.75rem; background:var(--bg); border-radius:var(--radius-sm);">
+              <span style="font-size:1.5rem;">🎨</span>
+              <div>
+                <strong style="color:var(--text-primary);">Frontend — HTML + CSS + JavaScript</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:0.2rem;">Pure vanilla frontend with no frameworks. Clean and beginner-friendly.</p>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:1rem; padding:0.75rem; background:var(--bg); border-radius:var(--radius-sm);">
+              <span style="font-size:1.5rem;">🔗</span>
+              <div>
+                <strong style="color:var(--text-primary);">Integration — Fetch API</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:0.2rem;">All data flows through RESTful HTTP calls to the backend running on localhost:8000.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       CTA BANNER
+       ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light)); border-radius:var(--radius-lg); padding:3rem 2rem; text-align:center; color:white;">
+        <h2 style="color:white; margin-bottom:0.75rem; font-size:clamp(1.5rem,3vw,2rem);">Ready to Book Your Appointment?</h2>
+        <p style="color:rgba(255,255,255,.8); margin-bottom:1.75rem; max-width:440px; margin-left:auto; margin-right:auto;">
+          Join MediSlot today — register as a patient and book your first appointment in under 2 minutes.
+        </p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="index.html#app" class="btn btn--accent">📅 Book Now</a>
+          <a href="help.html" class="btn btn--outline">Learn How →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER (same on every page)
+       ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">🏥 MediSlot</div>
+          <p class="footer__tagline">Making healthcare appointments simple, fast, and accessible for everyone.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigate</div>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="help.html">Help &amp; FAQ</a></li>
+            <li><a href="index.html#doctors">Doctors</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Quick Actions</div>
+          <ul class="footer__links">
+            <li><a href="index.html#app">Register Patient</a></li>
+            <li><a href="index.html#app">Book Appointment</a></li>
+            <li><a href="index.html#app">View Appointments</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2025 MediSlot. Built with ❤️ for better healthcare.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

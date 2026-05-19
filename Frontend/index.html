@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediSlot — Smart Medical Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#home">
+      <span class="brand-icon"><i class="fa-solid fa-stethoscope"></i></span>
+      Medi<span>Slot</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#doctors" class="nav-link">Doctors</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#help" class="nav-link">Help</a></li>
+      <li><a href="#appointments" class="nav-link" id="navMyAppts">My Appointments</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="notif-btn" id="notifBtn" title="Notifications">
+        <i class="fa-regular fa-bell"></i>
+        <span class="notif-badge" id="notifBadge" style="display:none">0</span>
+      </button>
+      <div class="profile-wrap" id="profileWrap">
+        <button class="profile-btn" id="profileBtn">
+          <i class="fa-regular fa-circle-user"></i>
+          <span id="profileLabel">Account</span>
+          <i class="fa-solid fa-chevron-down chevron"></i>
+        </button>
+        <div class="profile-dropdown" id="profileDropdown">
+          <div id="guestMenu">
+            <button class="dd-item" onclick="openModal('loginModal')"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+            <button class="dd-item" onclick="openModal('registerModal')"><i class="fa-solid fa-user-plus"></i> Register</button>
+          </div>
+          <!-- <button class="dd-item" onclick="navigateTo('appointments')"></button> -->
+          <div id="authMenu" style="display:none">
+            <div class="dd-user-info" id="ddUserInfo"></div>
+            <hr class="dd-divider"/>
+            <button class="dd-item" onclick="openProfileModal()">
+              <i class="fa-solid fa-user"></i>
+              My Profile
+            </button>
+
+            <button class="dd-item" onclick="editProfile()">
+              <i class="fa-solid fa-pen"></i>
+              Edit Profile
+            </button>
+
+            <button class="dd-item dd-danger" onclick="deleteAccount()">
+              <i class="fa-solid fa-trash"></i>
+              Delete Account
+            </button>
+            <button class="dd-item" onclick="navigateTo('appointments')"><i class="fa-regular fa-calendar-check"></i> My Appointments</button>
+            <button class="dd-item dd-danger" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          </div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HOME PAGE ===================== -->
+<section id="home" class="page active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-blobs">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge"><i class="fa-solid fa-shield-heart"></i> Trusted Healthcare Platform</div>
+        <h1 class="hero-title">Your Health,<br/><em>Our Priority.</em></h1>
+        <p class="hero-sub">Book appointments with top specialists in seconds. No waiting rooms, no paperwork — just seamless, secure healthcare at your fingertips.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick='handleHeroBooking()'><i class="fa-solid fa-calendar-plus"></i> Book Appointment</button>
+          <button class="btn-ghost" onclick="navigateTo('about')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span>1200+</span><p>Doctors</p></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span>50k+</span><p>Patients</p></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span>4.9★</span><p>Rating</p></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-float card-pulse">
+          <div class="hero-card">
+            <div class="hc-icon teal"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div>
+              <div class="hc-label">Heart Rate</div>
+              <div class="hc-value">72 BPM <span class="green">Normal</span></div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hc-icon green"><i class="fa-solid fa-user-doctor"></i></div>
+            <div>
+              <div class="hc-label">Next Appointment</div>
+              <div class="hc-value">Dr. Sharma <span class="muted">Tomorrow, 10am</span></div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hc-icon teal2"><i class="fa-solid fa-syringe"></i></div>
+            <div>
+              <div class="hc-label">Vaccination</div>
+              <div class="hc-value">Up to date <span class="green">✓</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-illustration">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#0d9488" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#0d9488" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="200" cy="200" r="180" fill="url(#g1)"/>
+            <circle cx="200" cy="200" r="130" fill="none" stroke="#0d9488" stroke-width="1" stroke-dasharray="8 4" opacity="0.3"/>
+            <circle cx="200" cy="200" r="80" fill="none" stroke="#10b981" stroke-width="1" opacity="0.2"/>
+            <!-- Cross symbol -->
+            <rect x="175" y="130" width="50" height="140" rx="10" fill="#0d9488" opacity="0.8"/>
+            <rect x="130" y="175" width="140" height="50" rx="10" fill="#0d9488" opacity="0.8"/>
+            <!-- Decorative circles -->
+            <circle cx="80" cy="120" r="12" fill="#10b981" opacity="0.4"/>
+            <circle cx="320" cy="280" r="18" fill="#0d9488" opacity="0.3"/>
+            <circle cx="340" cy="100" r="8" fill="#14b8a6" opacity="0.5"/>
+            <circle cx="60" cy="300" r="14" fill="#059669" opacity="0.3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section features-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Why MediSlot?</div>
+        <h2>Healthcare made <em>effortless</em></h2>
+        <p>Everything you need to manage your health journey in one place.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="fc-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Instant Booking</h3>
+          <p>Book appointments in under 60 seconds. Choose your doctor, pick a slot, and you're done.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon green"><i class="fa-solid fa-lock"></i></div>
+          <h3>Secure & Private</h3>
+          <p>JWT-based authentication ensures your health data stays protected at all times.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon teal2"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h3>Find Specialists</h3>
+          <p>Browse verified specialists across all disciplines — from cardiology to dermatology.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon emerald"><i class="fa-solid fa-bell"></i></div>
+          <h3>Smart Notifications</h3>
+          <p>Get real-time updates on your bookings, cancellations, and appointment reminders.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon teal"><i class="fa-solid fa-calendar-days"></i></div>
+          <h3>Manage Appointments</h3>
+          <p>View, reschedule, or cancel your appointments anytime — all from your dashboard.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon green"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3>Fully Responsive</h3>
+          <p>Seamlessly access MediSlot from any device — desktop, tablet, or mobile.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCTORS SLIDER (HOME) -->
+  <div class="section doctors-section" id="doctors">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Our Specialists</div>
+        <h2>Meet our <em>expert doctors</em></h2>
+        <p>Verified professionals ready to care for you.</p>
+        <div class="doctor-search">
+        <input
+          type="text"
+          id="doctorSearch"
+          placeholder="Search doctors or specialization..."
+          onkeyup="filterDoctors()"
+        />
+      </div>
+      </div>
+      <div class="slider-wrapper">
+        <button class="slider-arrow left" id="sliderPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="doctors-slider" id="doctorsSlider">
+          <div class="slider-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading doctors...</div>
+        </div>
+        <button class="slider-arrow right" id="sliderNext"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="section cta-banner-section">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="cta-banner-text">
+          <h2>Ready to take control of your health?</h2>
+          <p>Join thousands of patients who trust MediSlot for their healthcare needs.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <button class="btn-primary light" onclick="openModal('registerModal')"><i class="fa-solid fa-user-plus"></i> Get Started Free</button>
+          <button class="btn-ghost light" onclick="navigateTo('doctors')">Browse Doctors</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-icon"><i class="fa-solid fa-stethoscope"></i></span>
+          Medi<span>Slot</span>
+          <p>Smart medical appointment booking for the modern patient.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Platform</h4>
+          <a href="#home" onclick="navigateTo('home')">Home</a>
+          <a href="#doctors" onclick="navigateTo('doctors')">Doctors</a>
+          <a href="#about" onclick="navigateTo('about')">About</a>
+          <a href="#help" onclick="navigateTo('help')">Help</a>
+        </div>
+        <div class="footer-links-group">
+          <h4>Account</h4>
+          <a href="#" onclick="openModal('loginModal')">Login</a>
+          <a href="#" onclick="openModal('registerModal')">Register</a>
+          <a href="#appointments" onclick="navigateTo('appointments')">My Appointments</a>
+        </div>
+        <div class="footer-links-group">
+          <h4>Contact</h4>
+          <a href="mailto:support@medislot.com">support@medislot.com</a>
+          <a href="tel:+911800000000">1800-000-000</a>
+          <p class="footer-small">Mon–Sat, 9am–6pm IST</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MediSlot. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<section id="about" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-badge">Our Story</div>
+      <h1>Built for <em>patients</em>, by people who care.</h1>
+      <p>MediSlot was founded with one mission — make healthcare accessible, fast, and stress-free for everyone.</p>
+    </div>
+  </div>
+  <div class="section container">
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Instant Booking</h3>
+        <p>No more phone calls, waiting on hold, or standing in long queues. MediSlot lets you book a verified doctor in under a minute — from anywhere, anytime.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon green"><i class="fa-solid fa-stethoscope"></i></div>
+        <h3>Easy Doctor Discovery</h3>
+        <p>Browse our curated network of specialists across all fields. Filter by specialization, view profiles, and pick the right doctor for your needs with confidence.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon teal2"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Secure Authentication</h3>
+        <p>Your health data is sensitive. We use industry-standard JWT authentication to ensure your account and appointment history remain private and secure.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon emerald"><i class="fa-solid fa-heart"></i></div>
+        <h3>Patient-First Experience</h3>
+        <p>Every feature of MediSlot is designed with the patient in mind. Clean UI, instant feedback, and a seamless flow from discovery to booking to confirmation.</p>
+      </div>
+    </div>
+    <div class="about-mission">
+      <div class="about-mission-text">
+        <div class="section-badge">Our Mission</div>
+        <h2>Making healthcare <em>human again.</em></h2>
+        <p>Healthcare should be a right, not a puzzle. MediSlot eliminates the friction between patients and doctors — no bureaucracy, no confusion, just care.</p>
+        <p>We partner with verified medical professionals to provide you with a trustworthy, end-to-end healthcare booking experience that respects your time and privacy.</p>
+        <button class="btn-primary" onclick="navigateTo('doctors')"><i class="fa-solid fa-calendar-plus"></i> Book Your First Appointment</button>
+      </div>
+      <div class="about-mission-visual">
+        <div class="mission-stats-grid">
+          <div class="ms-card"><span>1200+</span><p>Verified Doctors</p></div>
+          <div class="ms-card"><span>50k+</span><p>Happy Patients</p></div>
+          <div class="ms-card"><span>99.9%</span><p>Uptime</p></div>
+          <div class="ms-card"><span>4.9★</span><p>Average Rating</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HELP PAGE ===================== -->
+<section id="help" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-badge">Help Center</div>
+      <h1>How can we <em>help you?</em></h1>
+      <p>Find answers to common questions and learn how to make the most of MediSlot.</p>
+    </div>
+  </div>
+  <div class="section container">
+    <div class="help-layout">
+      <div class="help-main">
+        <h2 class="help-section-title"><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <button class="faq-q">How do I book an appointment? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>Browse doctors on the Doctors page or scroll down to the doctor slider on the home page. Click "Book Appointment" on any doctor card. If you're logged in, a booking modal will appear where you can select a date and time. If not logged in, you'll be prompted to log in first.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How do I register an account? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>Click the "Account" button in the top navigation bar and select "Register". Fill in your name, age, gender, phone number, email, and password. Your account will be created instantly and you'll be logged in automatically.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How do I log in? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>Click "Account" in the navbar and select "Login". Enter your registered phone number and password. Upon successful login, a JWT token is securely stored and you'll have full access to your appointments and booking features.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How do I cancel an appointment? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>Go to "My Appointments" from the navbar or your account dropdown. Find the appointment you wish to cancel and click the "Cancel" button. You'll receive a confirmation notification. Please cancel at least 2 hours before the appointment time.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">What if a slot is already booked? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>If a time slot is already taken by another patient, you'll see an error notification. Simply choose a different date or time. Slots are allocated on a first-come, first-served basis.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Is my data safe? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>Absolutely. MediSlot uses JWT (JSON Web Tokens) for secure authentication. Your data is transmitted over HTTPS and never shared with third parties. We comply with all applicable data protection regulations.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Can I book appointments for family members? <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="faq-a"><p>Currently, each MediSlot account is tied to one patient profile. For family members, separate accounts can be created using their respective phone numbers and emails.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="help-sidebar">
+        <div class="help-contact-card">
+          <div class="hcc-icon"><i class="fa-solid fa-headset"></i></div>
+          <h3>Need More Help?</h3>
+          <p>Our support team is here for you.</p>
+          <a href="mailto:support@medislot.com" class="btn-primary full"><i class="fa-solid fa-envelope"></i> Email Support</a>
+          <div class="hcc-divider"></div>
+          <div class="hcc-contact-item"><i class="fa-solid fa-phone"></i><span>1800-000-000</span></div>
+          <div class="hcc-contact-item"><i class="fa-solid fa-clock"></i><span>Mon–Sat, 9am–6pm IST</span></div>
+        </div>
+        <div class="help-steps-card">
+          <h3><i class="fa-solid fa-list-check"></i> Quick Steps</h3>
+          <div class="help-step"><span>1</span><p>Register or Login</p></div>
+          <div class="help-step"><span>2</span><p>Browse Doctors</p></div>
+          <div class="help-step"><span>3</span><p>Click Book Appointment</p></div>
+          <div class="help-step"><span>4</span><p>Choose Date & Time</p></div>
+          <div class="help-step"><span>5</span><p>Get Confirmed!</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MY APPOINTMENTS PAGE ===================== -->
+<section id="appointments" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-badge">Your Dashboard</div>
+      <h1>My <em>Appointments</em></h1>
+      <p>Track, manage, and cancel your upcoming medical appointments.</p>
+    </div>
+  </div>
+  <div class="section container">
+    <div id="apptLoginWall" style="display:none" class="login-wall">
+      <div class="lw-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3>Login Required</h3>
+      <p>Please log in to view your appointments.</p>
+      <button class="btn-primary" onclick="openModal('loginModal')"><i class="fa-solid fa-right-to-bracket"></i> Login Now</button>
+    </div>
+    <div id="apptContent" style="display:none">
+      <div class="appt-header">
+        <h2>Upcoming Appointments</h2>
+        <button class="btn-primary sm" onclick="loadAppointments()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+      </div>
+      <div id="apptList" class="appt-grid">
+        <div class="appt-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading appointments...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODALS ===================== -->
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('loginModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-icon teal"><i class="fa-solid fa-right-to-bracket"></i></div>
+    <h2 class="modal-title">Welcome Back</h2>
+    <p class="modal-sub">Sign in to your MediSlot account</p>
+    <div class="modal-form" id="loginForm">
+      <div class="form-group">
+        <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+        <input type="tel" id="loginPhone" placeholder="Enter your phone number" />
+      </div>
+      <div class="form-group">
+        <label><i class="fa-solid fa-lock"></i> Password</label>
+        <div class="input-password">
+          <input type="password" id="loginPassword" placeholder="Enter your password" />
+          <button type="button" class="pw-toggle" onclick="togglePassword('loginPassword', this)"><i class="fa-regular fa-eye"></i></button>
+        </div>
+      </div>
+      <button class="btn-primary full" onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <p class="modal-switch">Don't have an account? <a href="#" onclick="switchModal('loginModal','registerModal')">Register here</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal modal-wide">
+    <button class="modal-close" onclick="closeModal('registerModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-icon green"><i class="fa-solid fa-user-plus"></i></div>
+    <h2 class="modal-title">Create Account</h2>
+    <p class="modal-sub">Join MediSlot today — it's free!</p>
+    <div class="modal-form" id="registerForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fa-solid fa-user"></i> Full Name</label>
+          <input type="text" id="regName" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label><i class="fa-solid fa-calendar"></i> Age</label>
+          <input type="number" id="regAge" placeholder="Your age" min="1" max="120" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fa-solid fa-venus-mars"></i> Gender</label>
+          <select id="regGender">
+            <option value="">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+          <input type="tel" id="regPhone" placeholder="10-digit mobile number" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+        <input type="email" id="regEmail" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label><i class="fa-solid fa-lock"></i> Password</label>
+        <div class="input-password">
+          <input type="password" id="regPassword" placeholder="Create a strong password" />
+          <button type="button" class="pw-toggle" onclick="togglePassword('regPassword', this)"><i class="fa-regular fa-eye"></i></button>
+        </div>
+      </div>
+      <button class="btn-primary full" onclick="register()"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+      <p class="modal-switch">Already have an account? <a href="#" onclick="switchModal('registerModal','loginModal')">Login here</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('bookingModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-icon teal"><i class="fa-solid fa-calendar-plus"></i></div>
+    <h2 class="modal-title">Book Appointment</h2>
+    <p class="modal-sub" id="bookingDoctorName">Select a date and time</p>
+    <div class="modal-form">
+      <div class="form-group">
+        <label><i class="fa-solid fa-calendar-day"></i> Appointment Date</label>
+        <input type="date" id="bookDate" />
+      </div>
+      <div class="form-group">
+        <label><i class="fa-solid fa-clock"></i> Appointment Time</label>
+        <input type="time" id="bookTime" />
+      </div>
+      <button class="btn-primary full" onclick="bookAppointment()"><i class="fa-solid fa-check"></i> Confirm Booking</button>
+    </div>
+  </div>
+</div>
+
+<!-- CANCEL CONFIRM MODAL -->
+<div class="modal-overlay" id="cancelModal">
+  <div class="modal modal-sm">
+    <div class="modal-icon danger"><i class="fa-solid fa-triangle-exclamation"></i></div>
+    <h2 class="modal-title">Cancel Appointment?</h2>
+    <p class="modal-sub">This action cannot be undone. Are you sure you want to cancel this appointment?</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('cancelModal')">Keep it</button>
+      <button class="btn-danger" id="confirmCancelBtn">Yes, Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

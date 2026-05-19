@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help &amp; FAQ — MediSlot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR (same on every page)
+       ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <div class="brand-icon">🏥</div>
+        MediSlot
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="help.html" class="active">Help</a></li>
+        <li><a href="index.html#doctors">Doctors</a></li>
+        <li><a href="index.html#app" class="navbar__cta">Book Now</a></li>
+      </ul>
+      <button class="navbar__toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       PAGE HEADER
+       ═══════════════════════════════════════ -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header__eyebrow">Support Center</div>
+      <h1 class="page-header__title">Help &amp; FAQ</h1>
+      <p class="page-header__sub">Everything you need to know about using MediSlot effectively.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       HOW TO USE — STEP GUIDES
+       ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Getting Started</span>
+        <h2 class="section-header__title">How to Use MediSlot</h2>
+        <p class="section-header__sub">Follow these simple steps to book your appointment.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem;">
+
+        <!-- How to Book -->
+        <div>
+          <h3 style="font-family:var(--font-body); font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:1rem; display:flex; align-items:center; gap:0.4rem;">
+            📅 How to Book an Appointment
+          </h3>
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+
+            <div class="step-card">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Register as a Patient</h4>
+                <p>Go to the <a href="index.html#app">Register Patient</a> tab. Fill in your name, age, gender, phone, and email. Submit the form.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Note Your Patient ID</h4>
+                <p>After registration, your unique Patient ID appears on screen. Write it down — you'll need it every time you book.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Browse Doctors</h4>
+                <p>Scroll to the <a href="index.html#doctors">Doctors</a> section. Each card shows the doctor's name, specialization, and email.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Click "Book Appointment"</h4>
+                <p>Tap the amber button on any doctor card. You'll be taken to the booking form with that doctor pre-selected.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <h4>Enter Your Details &amp; Confirm</h4>
+                <p>Enter your Patient ID, choose a date and time, and click "Book Appointment". A success message confirms your slot.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- How to View -->
+        <div>
+          <h3 style="font-family:var(--font-body); font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:1rem; display:flex; align-items:center; gap:0.4rem;">
+            🔍 How to View Your Appointments
+          </h3>
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+
+            <div class="step-card">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Go to "View Appointments" Tab</h4>
+                <p>Click the "🔍 View Appointments" tab in the app section on the <a href="index.html#app">Home page</a>.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Enter Your Patient ID</h4>
+                <p>Type in the Patient ID you received when you registered, then click Search.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>View All Appointments</h4>
+                <p>All your appointments will appear as cards, showing the doctor, date, and time for each.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Cancel If Needed</h4>
+                <p>Click the red "🗑 Cancel" button on any appointment card to remove it. A confirmation dialog will appear first.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FAQ ACCORDION
+       Controlled by initFAQ() in script.js
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt">
+    <div class="container" style="max-width:760px;">
+
+      <div class="section-header">
+        <span class="section-header__eyebrow">FAQ</span>
+        <h2 class="section-header__title">Frequently Asked Questions</h2>
+        <p class="section-header__sub">Quick answers to the most common questions.</p>
+      </div>
+
+      <!-- Each .faq-item is toggled by clicking .faq-question -->
+      <!-- The .faq-answer max-height is animated by CSS -->
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do I need an account to book an appointment?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          No account or login is needed. Simply register as a patient (one-time process) using the
+          Register Patient form. You'll receive a Patient ID which acts as your identifier for all
+          future bookings.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What is a Patient ID and where do I find it?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Your Patient ID is a unique number assigned by MediSlot when you register. It appears
+          as a success message right after registration. Keep it saved — you'll need it every time
+          you book or view appointments.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I book two appointments with the same doctor at the same time?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          No. MediSlot's backend prevents duplicate bookings for the same doctor, date, and time.
+          If a slot is already taken, you'll see a warning message and will need to choose a
+          different time or doctor.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How do I cancel an appointment?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Go to the "View Appointments" tab on the home page, enter your Patient ID, and find the
+          appointment you want to cancel. Click the red "🗑 Cancel" button. You'll be asked to confirm
+          before it's removed.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          I forgot my Patient ID. What should I do?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Currently, MediSlot doesn't have a Patient ID recovery system built into the frontend.
+          You can check with your clinic administrator who has access to the backend, or re-register
+          with fresh details (you'll get a new ID).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I book appointments for someone else?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes. You can register the other person as a patient and use their Patient ID when booking.
+          Make sure to use their correct personal details during registration.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Why isn't the page loading any doctors?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          This usually means the backend server isn't running. Make sure your FastAPI server is
+          running at <code style="background:var(--bg);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.9em;">http://127.0.0.1:8000</code>.
+          Also check that CORS is enabled on the backend to allow browser requests.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Who can add doctors to the system?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Anyone with access to the MediSlot frontend can add a doctor using the "Add Doctor" tab.
+          In a production system, this would typically be restricted to admin users. For now,
+          the form is open for setup and testing purposes.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What time format should I use when booking?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Use the time picker provided in the form — it uses 24-hour format (e.g., 09:00 for 9 AM,
+          14:30 for 2:30 PM). The backend stores the time exactly as entered.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       CONTACT / HELP SECTION
+       ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Support</span>
+        <h2 class="section-header__title">Need More Help?</h2>
+        <p class="section-header__sub">We're here to assist. Reach out through any of the channels below.</p>
+      </div>
+
+      <div class="grid grid--3">
+
+        <div class="feature-card" style="text-align:center;">
+          <div class="feature-card__icon" style="margin:0 auto 1rem;">📧</div>
+          <h3 class="feature-card__title">Email Support</h3>
+          <p class="feature-card__text">Send us your query and we'll respond within 24 hours.</p>
+          <a href="mailto:support@medislot.health" class="btn btn--outline-primary btn--sm mt-2"
+             style="margin-top:1rem;">
+            support@medislot.health
+          </a>
+        </div>
+
+        <div class="feature-card" style="text-align:center;">
+          <div class="feature-card__icon" style="margin:0 auto 1rem;">📞</div>
+          <h3 class="feature-card__title">Phone Support</h3>
+          <p class="feature-card__text">Available Monday–Saturday, 9 AM to 6 PM IST.</p>
+          <a href="tel:+911800MEDISLOT" class="btn btn--outline-primary btn--sm"
+             style="margin-top:1rem;">
+            +91 1800-MEDISLOT
+          </a>
+        </div>
+
+        <div class="feature-card" style="text-align:center;">
+          <div class="feature-card__icon" style="margin:0 auto 1rem;">📖</div>
+          <h3 class="feature-card__title">Documentation</h3>
+          <p class="feature-card__text">Browse our API documentation and developer guides.</p>
+          <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noopener"
+             class="btn btn--outline-primary btn--sm" style="margin-top:1rem;">
+            Open API Docs ↗
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       QUICK TIPS CALLOUT
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt">
+    <div class="container" style="max-width:700px;">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Pro Tips</span>
+        <h2 class="section-header__title">Get the Most Out of MediSlot</h2>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+
+        <div class="alert alert--info" style="font-size:0.9rem;">
+          💡 <strong>Tip:</strong> Click "Book Appointment" directly on a doctor's card — it pre-fills the doctor in the booking form for you!
+        </div>
+
+        <div class="alert alert--info" style="font-size:0.9rem;">
+          💡 <strong>Tip:</strong> You can't pick a date in the past — the date picker automatically restricts to today and future dates.
+        </div>
+
+        <div class="alert alert--warning" style="font-size:0.9rem;">
+          ⚠️ <strong>Important:</strong> Always save your Patient ID after registering. There is currently no "forgot ID" recovery on the frontend.
+        </div>
+
+        <div class="alert alert--success" style="font-size:0.9rem;">
+          ✅ <strong>Good to know:</strong> Appointments are confirmed instantly. If the slot is already taken, you'll get a clear error message — no guessing!
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER (same on every page)
+       ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">🏥 MediSlot</div>
+          <p class="footer__tagline">Making healthcare appointments simple, fast, and accessible for everyone.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigate</div>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="help.html">Help &amp; FAQ</a></li>
+            <li><a href="index.html#doctors">Doctors</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Quick Actions</div>
+          <ul class="footer__links">
+            <li><a href="index.html#app">Register Patient</a></li>
+            <li><a href="index.html#app">Book Appointment</a></li>
+            <li><a href="index.html#app">View Appointments</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2025 MediSlot. Built with ❤️ for better healthcare.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
