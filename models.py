@@ -21,3 +21,7 @@ class Patient(BaseModel):
 class UserLogin(BaseModel):
     phone_number: str
     password: str
+    
+class UpdateProfile(BaseModel):
+    name: str
+    email: str

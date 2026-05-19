@@ -730,5 +730,111 @@ function togglePassword(inputId, btn) {
   btn.innerHTML = isPassword ? '<i class="fa-regular fa-eye-slash"></i>' : '<i class="fa-regular fa-eye"></i>';
 }
 
+async function openProfileModal() {
+
+    try {
+
+        const response = await fetch(
+            `${API}/patient/me`,
+            {
+                headers: authHeaders()
+            }
+        );
+
+        if (!response.ok) {
+
+            throw new Error();
+        }
+
+        const data = await response.json();
+
+        console.log(data);
+
+        document.getElementById(
+            'profileName'
+        ).value = data.name || '';
+
+        document.getElementById(
+            'profilePhone'
+        ).value = data.phone_number || '';
+
+        document.getElementById(
+            'profileEmail'
+        ).value = data.email || '';
+
+        openModal('profileModal');
+
+    } catch (error) {
+
+        console.log(error);
+
+        showToast(
+            'error',
+            'Error',
+            'Could not load profile'
+        );
+    }
+}
+
+async function updateProfile() {
+
+    try {
+
+        const name = document
+        .getElementById('profileName')
+        .value;
+
+        const email = document
+        .getElementById('profileEmail')
+        .value;
+
+        const response = await fetch(
+            `${API}/patient/me`,
+            {
+                method: 'PUT',
+
+                headers: {
+                    'Content-Type':
+                    'application/json',
+
+                    Authorization:
+                    `Bearer ${getToken()}`
+                },
+
+                body: JSON.stringify({
+                    name,
+                    email
+                })
+            }
+        );
+
+        if (!response.ok) {
+
+            throw new Error();
+        }
+
+        showToast(
+            'success',
+            'Updated',
+            'Profile updated successfully'
+        );
+
+        closeModal('profileModal');
+
+    } catch (error) {
+
+        showToast(
+            'error',
+            'Error',
+            'Could not update profile'
+        );
+    }
+}
+
+function editProfile() {
+
+    openProfileModal();
+}
+
 /* ---------- INITIAL PAGE ---------- */
 navigateTo('home');

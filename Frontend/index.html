@@ -532,6 +532,48 @@
     </div>
   </div>
 </div>
+<!-- Profile Modal -->
+<div class="modal-overlay" id="profileModal">
+
+  <div class="modal-card">
+
+    <button class="modal-close"
+      onclick="closeModal('profileModal')">
+      ×
+    </button>
+
+    <h2>My Profile</h2>
+
+    <form id="profileForm">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="profileName">
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" id="profilePhone" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="profileEmail">
+      </div>
+
+      <button
+        type="button"
+        class="btn-primary"
+        onclick="updateProfile()">
+
+        Save Changes
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>

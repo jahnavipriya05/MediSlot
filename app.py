@@ -1,11 +1,11 @@
 from fastapi import  FastAPI,Depends,HTTPException
-from models import Doctor, Appointment,Patient,UserLogin
+from models import Doctor, Appointment,Patient,UserLogin,UpdateProfile
 from database import session, engine
 import database_models
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 from auth import get_current_user
-import random
+
 
 app = FastAPI()
 code = 101
@@ -188,53 +188,66 @@ def update_patient(id: int, patient: Patient, db: Session = Depends(get_db)):
         return {"message":"Patient detils updated successfully"}
     raise HTTPException(status_code=404)
 
-@app.delete("/patient")
-def delete_patient(id : int, db : Session = Depends(get_db)):
-    patient = db.query(database_models.Patient).filter(database_models.Patient.id == id).first()
-    if patient:
-        db.delete(patient)
-        db.commit()
-        return {"meassage": "Patient details deleted successfully"}
-    raise HTTPException(status_code=404)
-
-
-
-#Appointments APIs
-@app.get("/appointment")
-def view_appointments(
+@app.delete("/appointment/{id}")
+def delete_apointment(
+    id: int,
     current_user: dict = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
 
-    patient_id = current_user["id"]
-
-    appointments = db.query(
+    appointment = db.query(
         database_models.Appointment
     ).filter(
-        database_models.Appointment.patient_id
-        == patient_id
-    ).all()
+        database_models.Appointment.id == id,
+        database_models.Appointment.patient_id == current_user["id"]
+    ).first()
 
-    result = []
+    if not appointment:
 
-    for appt in appointments:
+        raise HTTPException(
+            status_code=404,
+            detail="Appointment not found"
+        )
 
-        doctor = db.query(
-            database_models.Doctor
-        ).filter(
-            database_models.Doctor.id
-            == appt.doctor_id
-        ).first()
+    db.delete(appointment)
 
-        result.append({
-            "id": appt.id,
-            "doctor_name": doctor.name,
-            "specialization": doctor.specialization,
-            "date": appt.date,
-            "time": appt.time
-        })
+    db.commit()
 
-    return result
+    return {
+        "message": "Appointment successfully deleted!"
+    }
+
+
+#Appointments APIs
+
+@app.get("/patient/me")
+def get_my_profile(
+
+    current_user: dict = Depends(get_current_user),
+
+    db: Session = Depends(get_db)
+):
+
+    patient = db.query(
+        database_models.Patient
+    ).filter(
+        database_models.Patient.id
+        == current_user["id"]
+    ).first()
+
+    if not patient:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Patient not found"
+        )
+
+    return {
+        "id": patient.id,
+        "name": patient.name,
+        "phone_number": patient.phone_number,
+        "email": patient.email
+    }
 
 @app.post("/patient")
 def add_patients(
@@ -277,15 +290,14 @@ def add_patients(
         "message": "Patient registered successfully"
     }
 
-@app.delete("/appointment/{id}")
-def delete_apointment(id:int, db:Session = Depends(get_db)):
-    appointment = db.query(database_models.Appointment).filter(database_models.Appointment.id == id).first()
-    if appointment:
-        db.delete(appointment)
+@app.delete("/patient")
+def delete_patient(id : int, db : Session = Depends(get_db)):
+    patient = db.query(database_models.Patient).filter(database_models.Patient.id == id).first()
+    if patient:
+        db.delete(patient)
         db.commit()
-        return {"message":"Appointment successfully deleted!"}
+        return {"meassage": "Patient details deleted successfully"}
     raise HTTPException(status_code=404)
-
 
 @app.post("/login")
 def login_user(
@@ -325,4 +337,37 @@ def login_user(
     return {
         "access_token": token,
         "token_type": "bearer"
+    }
+    
+@app.put("/patient/me")
+def update_patient_profile(
+
+    profile: UpdateProfile,
+
+    current_user: dict = Depends(get_current_user),
+
+    db: Session = Depends(get_db)
+):
+
+    patient = db.query(
+        database_models.Patient
+    ).filter(
+        database_models.Patient.id
+        == current_user["id"]
+    ).first()
+
+    if not patient:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Patient not found"
+        )
+
+    patient.name = profile.name
+    patient.email = profile.email
+
+    db.commit()
+
+    return {
+        "message": "Profile updated successfully"
     }
