@@ -57,6 +57,65 @@ def view_doctors(db: Session = Depends(get_db)):
     return doctors
     # return {"message":"List of doctors!"}
     
+db = SessionLocal()
+
+if db.query(database_models.Doctor).count() == 0:
+    doctors = [
+        database_models.Doctor(
+            name="Sadwi",
+            email="sadwi.medislot@gmail.com",
+            specialization="Gynecologist"
+        ),
+        database_models.Doctor(
+            name="Sakura",
+            email="sakura.medislot@gmail.com",
+            specialization="Pediatrician"
+        ),
+        database_models.Doctor(
+            name="Vashikaran",
+            email="vashikaran.medislot@gmail.com",
+            specialization="General surgeon"
+        ),
+        database_models.Doctor(
+            name="Adithi Sharma",
+            email="adithi.medislot@gmail.com",
+            specialization="General surgeon"
+        ),
+        database_models.Doctor(
+            name="Mahi",
+            email="mahi.medislot@gmail.com",
+            specialization="ENT Specialist"
+        ),
+        database_models.Doctor(
+            name="Ashish",
+            email="ashish.medislot@gmail.com",
+            specialization="Dermatologist"
+        ),
+        database_models.Doctor(
+            name="Jahnavi",
+            email="jahnavi.medislot@gmail.com",
+            specialization="Gastroenterologist"
+        ),
+        database_models.Doctor(
+            name="Harsha Vardhini",
+            email="harsha.medislot@gmail.com",
+            specialization="Neurologist"
+        ),
+        database_models.Doctor(
+            name="Anusha",
+            email="anusha.medislot@gmail.com",
+            specialization="Cardiology"
+        ),
+        database_models.Doctor(
+            name="Rohit",
+            email="rohit.medislot@gmail.com",
+            specialization="Dentist"
+        )
+    ]
+    db.add_all(doctors)
+    db.commit()
+db.close()
+    
 
 @app.post("/doctor")
 def add_doctors(doctor: Doctor, db: Session = Depends(get_db)):
