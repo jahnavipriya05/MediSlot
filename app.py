@@ -10,7 +10,11 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 app = FastAPI()
-app.mount("/Frontend", StaticFiles(directory="Frontend"), name="Frontend")
+app.mount(
+    "/Frontend",
+    StaticFiles(directory="./Frontend"),
+    name="Frontend"
+)
 
 database_models.Base.metadata.create_all(bind=engine)
 
@@ -44,9 +48,7 @@ def get_db():
 
 @app.get("/")
 def home():
-    return {
-        "message": "NEW VERSION WORKING"
-    }
+    return FileResponse("./Frontend/index.html")
 
 # doctor APIs
 @app.get("/doctors")
