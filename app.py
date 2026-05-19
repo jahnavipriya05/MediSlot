@@ -6,10 +6,11 @@ from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 from fastapi.middleware.cors import CORSMiddleware
 from auth import get_current_user
-
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 app = FastAPI()
-code = 101
+app.mount("/Frontend", StaticFiles(directory="Frontend"), name="Frontend")
 
 database_models.Base.metadata.create_all(bind=engine)
 
@@ -37,11 +38,15 @@ def get_db():
     finally:
         db.close()
 
+# @app.get("/")
+# def home():
+#     return FileResponse("Frontend/index.html")
+
 @app.get("/")
-def greet():
-    return "Greetings, to you!"
-
-
+def home():
+    return {
+        "message": "NEW VERSION WORKING"
+    }
 
 # doctor APIs
 @app.get("/doctors")
